@@ -26,6 +26,15 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("Все");
 
+  // Генерация фиксированных позиций для точек (чтобы не было Math.random() в JSX)
+  const [dots] = useState(() => 
+    Array.from({ length: 12 }, () => ({
+      top: `${Math.random() * 90 + 5}%`,
+      left: `${Math.random() * 90 + 5}%`,
+      delay: `${Math.random() * 3}s`
+    }))
+  );
+
   const handleComingSoon = () => setShowModal(true);
   const filtered = selectedSubject === "Все" ? olympiads : olympiads.filter((o) => o.subject === selectedSubject);
 
@@ -41,9 +50,10 @@ export default function Home() {
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
       <div className="blob blob-3"></div>
-      {[...Array(12)].map((_, i) => (
-        <div key={i} className="glow-dot" style={{ top: `${Math.random() * 90 + 5}%`, left: `${Math.random() * 90 + 5}%`, animationDelay: `${Math.random() * 3}s` }}></div>
-      ))}
+    {/* Светящиеся точки — позиции генерируются на клиенте */}
+    {dots.map((dot, i) => (
+      <div key={i} className="glow-dot" style={{ top: dot.top, left: dot.left, animationDelay: dot.delay }}></div>
+     ))}
 
       {/* ===== НАВИГАЦИОННАЯ ПАНЕЛЬ ===== */}
       <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 backdrop-blur-xl border-b transition-colors duration-500 ${isDark ? 'bg-black/20 border-purple-500/20' : 'bg-white/40 border-purple-200'}`}>
