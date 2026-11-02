@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import ParticleBackground from "./components/ParticleBackground";
+import React, { useState, useEffect } from "react";
 
 // Данные об олимпиадах
 const olympiads = [
@@ -121,14 +122,18 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("Все");
 
-  // Генерация фиксированных позиций для точек (ленивая инициализация — только на клиенте)
-  const [dots] = useState(() =>
+// Генерация точек только на клиенте (useEffect выполняется после монтирования)
+const [dots, setDots] = useState([]);
+
+useEffect(() => {
+  setDots(
     Array.from({ length: 12 }, () => ({
       top: `${Math.random() * 90 + 5}%`,
       left: `${Math.random() * 90 + 5}%`,
       delay: `${Math.random() * 3}s`,
     }))
   );
+}, []);
 
   const handleComingSoon = () => setShowModal(true);
   const filtered =
