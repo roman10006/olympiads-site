@@ -63,20 +63,20 @@ export default function OlympiadsPage() {
         </button>
       </nav>
 
-      {/* ОСНОВНОЙ КОНТЕНТ С ПЕРЕХОДОМ */}
+            {/* ОСНОВНОЙ КОНТЕНТ С ПЕРЕХОДОМ */}
       <PageTransition direction="left">
-        <div className="relative z-10 pt-32 pb-16 px-8 md:px-16 w-full">
-          <div className="max-w-[1920px] mx-auto w-full">
+        <div className="relative z-10 pt-32 pb-16 px-4 md:px-8 w-full">
+          <div className="max-w-[2400px] mx-auto w-full">
             
-            <div className="mb-10">
+            <div className="mb-10 px-4">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Олимпиады школьников</h1>
               <p className="text-purple-200/70 text-xl max-w-3xl leading-relaxed">
                 Перечень 2026/27: профили и уровни выбранного сезона. Прошлые годы доступны в фильтре «Сезон».
               </p>
             </div>
 
-            {/* ПАНЕЛЬ ФИЛЬТРОВ */}
-            <div className="p-8 md:p-10 rounded-[32px] bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl mb-10 w-full">
+            {/* ПАНЕЛЬ ФИЛЬТРОВ - на всю ширину */}
+            <div className="p-8 md:p-10 rounded-[32px] bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl mb-10 w-full mx-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
                 <div className="lg:col-span-2">
                   <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Название</label>
@@ -132,8 +132,8 @@ export default function OlympiadsPage() {
               </div>
             </div>
 
-            {/* ШИРОКИЕ КАРТОЧКИ - 2 КОЛОНКИ */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+            {/* ОЧЕНЬ ШИРОКИЕ КАРТОЧКИ - 2 КОЛОНКИ, ПРИЖАТЫ К КРАЯМ */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full px-4">
               {filteredOlympiads.map((o) => (
                 <div key={o.id} className="rounded-[28px] bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl overflow-hidden hover:border-purple-400/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 flex flex-col">
                   <div className="p-8 flex-1">
@@ -141,7 +141,7 @@ export default function OlympiadsPage() {
                       <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-fuchsia-500/30 border border-purple-400/30 flex items-center justify-center flex-shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-300"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                       </div>
-                      <h3 className="text-xl font-bold text-white leading-tight">{o.name}</h3>
+                      <h3 className="text-2xl font-bold text-white leading-tight">{o.name}</h3>
                     </div>
 
                     <div className="mb-5">
@@ -152,9 +152,9 @@ export default function OlympiadsPage() {
 
                     <div className="flex flex-wrap gap-3 mb-4">
                       {o.subjects.map((s, idx) => (
-                        <div key={idx} className="flex items-center gap-2 bg-purple-950/40 px-3 py-1.5 rounded-xl border border-purple-500/20">
-                          <span className="text-sm text-purple-200">{s.name}</span>
-                          <span className="px-2 py-0.5 rounded-md text-xs font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-dashed border-fuchsia-400/50">
+                        <div key={idx} className="flex items-center gap-2 bg-purple-950/40 px-4 py-2 rounded-xl border border-purple-500/20">
+                          <span className="text-base text-purple-200">{s.name}</span>
+                          <span className="px-3 py-1 rounded-lg text-sm font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-dashed border-fuchsia-400/50">
                             Уровень {s.level}
                           </span>
                         </div>
@@ -164,8 +164,8 @@ export default function OlympiadsPage() {
 
                   <div className="border-t border-purple-500/20 p-6 bg-purple-950/40">
                     <div className="text-sm text-purple-300/60 mb-1.5">Ближайшее действие</div>
-                    <div className="text-base font-semibold text-white mb-1">{o.nextAction}</div>
-                    <div className="text-base text-purple-300 font-medium">{o.nextDate}</div>
+                    <div className="text-lg font-semibold text-white mb-1">{o.nextAction}</div>
+                    <div className="text-lg text-purple-300 font-medium">{o.nextDate}</div>
                     
                     <div className="mt-4 pt-4 border-t border-purple-500/10 flex justify-between text-sm text-purple-300/50">
                       <span>Данные о льготах</span>
