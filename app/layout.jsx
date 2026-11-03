@@ -4,7 +4,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export const metadata = {
-  title: "OlympTracker — Все олимпиады в одном месте",
+  title: "Олимпиады школьников — Все олимпиады в одном месте",
   description: "Удобный трекер олимпиад для подготовки к поступлению в вуз",
 };
 
