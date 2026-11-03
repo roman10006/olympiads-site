@@ -1,17 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ParticleBackground from "./components/ParticleBackground";
 import ComingSoonModal from "./components/ComingSoonModal";
+import PageTransition from "./components/PageTransition";
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const handleButtonClick = (title) => {
     setModalTitle(title);
@@ -19,7 +15,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`animated-gradient min-h-screen w-full relative overflow-hidden transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className="animated-gradient min-h-screen w-full relative overflow-hidden">
       <div className="blob blob-1"></div><div className="blob blob-2"></div>
       <div className="blob blob-3"></div><div className="blob blob-4"></div>
       <div className="blob blob-5"></div><div className="blob blob-6"></div>
@@ -41,7 +37,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center bg-purple-950/40 backdrop-blur-xl border-b border-purple-500/20">
         <a 
           href="/olympiads"
-          className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600/80 to-fuchsia-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3"
+          className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-purple-600/80 to-fuchsia-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-12 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
           <span>Все олимпиады</span>
@@ -49,26 +45,28 @@ export default function Home() {
 
         <button 
           onClick={() => handleButtonClick("Интерактивный календарь с дедлайнами и напоминаниями находится в разработке!")}
-          className="group relative px-8 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-600/80 to-purple-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3"
+          className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-fuchsia-600/80 to-purple-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3"
         >
           <span>Календарь</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         </button>
       </nav>
 
-      <div className="relative z-10 flex items-center justify-center min-h-screen pt-20" style={{ zIndex: 10 }}>
-        <header className="w-full px-8 md:px-16 py-16 flex flex-col items-center text-center">
-          <div className="inline-block px-6 py-2 mb-8 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
-            <span className="text-purple-300 text-base font-medium">🚀 Твой путь в МФТИ</span>
-          </div>
-          <h1 className="text-6xl md:text-8xl font-bold glow-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-600 bg-clip-text text-transparent mb-8">
-            Олимпиады школьников
-          </h1>
-          <p className="text-xl md:text-2xl text-purple-200/80 max-w-3xl leading-relaxed">
-            Все олимпиады в одном месте. Отслеживай сроки, уровни РСОШ и готовься к поступлению эффективно.
-          </p>
-        </header>
-      </div>
+      <PageTransition direction="right">
+        <div className="relative z-10 flex items-center justify-center min-h-screen pt-20" style={{ zIndex: 10 }}>
+          <header className="w-full px-8 md:px-16 py-16 flex flex-col items-center text-center">
+            <div className="inline-block px-6 py-2 mb-8 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
+              <span className="text-purple-300 text-base font-medium">🚀 Твой путь в МФТИ</span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-bold glow-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-600 bg-clip-text text-transparent mb-8">
+              Олимпиады школьников
+            </h1>
+            <p className="text-xl md:text-2xl text-purple-200/80 max-w-3xl leading-relaxed">
+              Все олимпиады в одном месте. Отслеживай сроки, уровни РСОШ и готовься к поступлению эффективно.
+            </p>
+          </header>
+        </div>
+      </PageTransition>
 
       <ComingSoonModal 
         isOpen={isModalOpen} 
