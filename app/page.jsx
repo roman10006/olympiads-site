@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import ParticleBackground from "./components/ParticleBackground";
 import ComingSoonModal from "./components/ComingSoonModal";
+import Link from "next/link";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,14 +43,14 @@ export default function Home() {
 
       {/* ===== НАВИГАЦИОННАЯ ПАНЕЛЬ (КНОПКИ) ===== */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-purple-950/40 backdrop-blur-xl border-b border-purple-500/20">
-        {/* Левая кнопка */}
-        <button 
-          onClick={() => handleButtonClick("Раздел 'Все олимпиады' с расширенным поиском и фильтрами скоро будет доступен!")}
-          className="group relative px-6 md:px-8 py-3 md:py-4 rounded-2xl bg-gradient-to-r from-purple-600/80 to-fuchsia-600/80 border border-purple-400/30 text-white font-bold text-base md:text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-12 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
-          <span>Все олимпиады</span>
-        </button>
+{/* Левая кнопка - теперь ссылка */}
+<Link 
+  href="/all-olympiads"
+  className="group relative px-6 md:px-8 py-3 md:py-4 rounded-2xl bg-gradient-to-r from-purple-600/80 to-fuchsia-600/80 border border-purple-400/30 text-white font-bold text-base md:text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:rotate-12 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
+  <span>Все олимпиады</span>
+</Link>
 
         {/* Логотип по центру (для красоты) */}
         <div className="hidden md:block text-xl font-bold bg-gradient-to-r from-purple-300 to-fuchsia-300 bg-clip-text text-transparent">
