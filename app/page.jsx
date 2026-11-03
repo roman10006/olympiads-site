@@ -16,10 +16,17 @@ export default function Home() {
   return (
     <div className="animated-gradient min-h-screen w-full relative overflow-hidden">
       {/* ===== ФОНОВЫЕ ЭЛЕМЕНТЫ ===== */}
+      {/* Фиолетовые пятна */}
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
       <div className="blob blob-3"></div>
       <div className="blob blob-4"></div>
+      
+      {/* Розовые пятна */}
+      <div className="blob blob-5"></div>
+      <div className="blob blob-6"></div>
+      <div className="blob blob-7"></div>
+      <div className="blob blob-8"></div>
 
       <div className="glow-dot" style={{ top: "10%", left: "15%", animationDelay: "0s" }}></div>
       <div className="glow-dot" style={{ top: "20%", left: "85%", animationDelay: "0.5s" }}></div>
