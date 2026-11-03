@@ -158,38 +158,19 @@ export default function OlympiadsPage() {
       </nav>
 
       {/* ===== ОСНОВНОЙ КОНТЕНТ ===== */}
-      <div className="relative z-10 pt-28 pb-12 px-6 md:px-12">
-        <div className="max-w-[1600px] mx-auto">
+      <div className="relative z-10 pt-28 pb-12 px-6 md:px-12 w-full">
+        <div className="max-w-[1800px] mx-auto w-full">
           
-          {/* Хлебные крошки */}
-          <div className="flex items-center gap-2 text-purple-300/70 text-sm mb-6">
-            <a href="/" className="hover:text-purple-200 transition-colors">Главная</a>
-            <span>/</span>
-            <span className="text-purple-200">Олимпиады</span>
-          </div>
-
           {/* Заголовок страницы */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">Олимпиады школьников</h1>
-              <p className="text-purple-200/70 text-sm max-w-2xl">
-                Перечень 2026/27: профили и уровни выбранного сезона. Прошлые годы доступны в фильтре «Сезон».
-              </p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-purple-900/30 border border-purple-500/30 backdrop-blur-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-300"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-                <span className="text-purple-200 font-semibold">{filteredOlympiads.length} олимпиад</span>
-              </div>
-              <button className="px-5 py-3 rounded-2xl bg-purple-900/30 border border-purple-500/30 backdrop-blur-md text-purple-200 font-semibold hover:border-purple-400 transition-all flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                Календарь
-              </button>
-            </div>
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">Олимпиады школьников</h1>
+            <p className="text-purple-200/70 text-base max-w-3xl leading-relaxed">
+              Перечень 2026/27: профили и уровни выбранного сезона. Прошлые годы доступны в фильтре «Сезон».
+            </p>
           </div>
 
           {/* ===== ПАНЕЛЬ ФИЛЬТРОВ ===== */}
-          <div className="p-6 md:p-8 rounded-3xl bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl mb-8">
+          <div className="p-6 md:p-8 rounded-3xl bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl mb-8 w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
               {/* Название */}
               <div className="lg:col-span-2">
@@ -317,7 +298,7 @@ export default function OlympiadsPage() {
           </div>
 
           {/* ===== КАРТОЧКИ ОЛИМПИАД ===== */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
             {filteredOlympiads.map((o) => (
               <div
                 key={o.id}
