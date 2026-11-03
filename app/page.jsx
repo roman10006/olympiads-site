@@ -15,19 +15,17 @@ export default function Home() {
 
   return (
     <div className="animated-gradient min-h-screen w-full relative overflow-hidden">
-      {/* ===== ФОНОВЫЕ ЭЛЕМЕНТЫ ===== */}
-      {/* Фиолетовые пятна */}
+      {/* ===== ФОНОВЫЕ ПЯТНА (z-index: 1) ===== */}
       <div className="blob blob-1"></div>
       <div className="blob blob-2"></div>
       <div className="blob blob-3"></div>
       <div className="blob blob-4"></div>
-      
-      {/* Розовые пятна */}
       <div className="blob blob-5"></div>
       <div className="blob blob-6"></div>
       <div className="blob blob-7"></div>
       <div className="blob blob-8"></div>
 
+      {/* ===== СВЕТЯЩИЕСЯ ТОЧКИ (z-index: 2) ===== */}
       <div className="glow-dot" style={{ top: "10%", left: "15%", animationDelay: "0s" }}></div>
       <div className="glow-dot" style={{ top: "20%", left: "85%", animationDelay: "0.5s" }}></div>
       <div className="glow-dot" style={{ top: "40%", left: "10%", animationDelay: "1s" }}></div>
@@ -39,6 +37,7 @@ export default function Home() {
       <div className="glow-dot" style={{ top: "50%", left: "60%", animationDelay: "1.8s" }}></div>
       <div className="glow-dot" style={{ top: "90%", left: "45%", animationDelay: "0.3s" }}></div>
 
+      {/* ===== CANVAS С ЧАСТИЦАМИ (z-index: 3) ===== */}
       <ParticleBackground />
 
       {/* ===== НАВИГАЦИОННАЯ ПАНЕЛЬ (КНОПКИ) ===== */}
@@ -68,7 +67,7 @@ export default function Home() {
       </nav>
 
       {/* ===== ОСНОВНОЙ КОНТЕНТ ===== */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen pt-20">
+      <div className="relative z-10 flex items-center justify-center min-h-screen pt-20" style={{ zIndex: 10 }}>
         
         {/* HERO-СЕКЦИЯ - ЦЕНТР ЭКРАНА */}
         <header className="w-full px-6 md:px-12 py-16 flex flex-col items-center text-center">
