@@ -1,12 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ParticleBackground from "./components/ParticleBackground";
 import ComingSoonModal from "./components/ComingSoonModal";
 
 export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const handleButtonClick = (title) => {
     setModalTitle(title);
@@ -14,7 +19,7 @@ export default function Home() {
   };
 
   return (
-    <div className="animated-gradient min-h-screen w-full relative overflow-hidden">
+    <div className={`animated-gradient min-h-screen w-full relative overflow-hidden transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="blob blob-1"></div><div className="blob blob-2"></div>
       <div className="blob blob-3"></div><div className="blob blob-4"></div>
       <div className="blob blob-5"></div><div className="blob blob-6"></div>
@@ -33,7 +38,6 @@ export default function Home() {
 
       <ParticleBackground />
 
-      {/* НАВИГАЦИЯ (без OlympTracker по центру) */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center bg-purple-950/40 backdrop-blur-xl border-b border-purple-500/20">
         <a 
           href="/olympiads"
@@ -52,7 +56,6 @@ export default function Home() {
         </button>
       </nav>
 
-      {/* ОСНОВНОЙ КОНТЕНТ */}
       <div className="relative z-10 flex items-center justify-center min-h-screen pt-20" style={{ zIndex: 10 }}>
         <header className="w-full px-8 md:px-16 py-16 flex flex-col items-center text-center">
           <div className="inline-block px-6 py-2 mb-8 rounded-full border border-purple-500/30 bg-purple-500/10 backdrop-blur-sm">
