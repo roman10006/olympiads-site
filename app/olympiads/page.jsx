@@ -21,13 +21,23 @@ const levelsList = ["Все уровни", "1", "2", "3"];
 const formatsList = ["Все", "Очный", "Заочный", "Дистанционный"];
 const sortList = ["По названию", "По дате", "По уровню"];
 const seasonsList = ["2026/27", "2025/26", "2024/25"];
+const classList = ["1-11", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+
+const defaultFilters = {
+  name: "",
+  subject: "Все предметы",
+  level: "Все уровни",
+  classRange: "1-11",
+  season: "2026/27",
+  format: "Все",
+  sort: "По названию",
+  showOutsideList: false,
+  registrationOpen: false,
+  hasFutureEvents: false,
+};
 
 export default function OlympiadsPage() {
-  const [filters, setFilters] = useState({
-    name: "", subject: "Все предметы", level: "Все уровни", classRange: "1-11",
-    season: "2026/27", format: "Все", sort: "По названию",
-    showOutsideList: false, registrationOpen: false, hasFutureEvents: false,
-  });
+  const [filters, setFilters] = useState({ ...defaultFilters });
 
   const filteredOlympiads = olympiadsData.filter((o) => {
     if (filters.name && !o.name.toLowerCase().includes(filters.name.toLowerCase())) return false;
@@ -36,6 +46,10 @@ export default function OlympiadsPage() {
     if (filters.season && o.season !== filters.season) return false;
     return true;
   });
+
+  const resetFilters = () => {
+    setFilters({ ...defaultFilters });
+  };
 
   return (
     <div className="animated-gradient min-h-screen w-full relative overflow-hidden">
@@ -52,109 +66,116 @@ export default function OlympiadsPage() {
       <ParticleBackground />
 
       {/* НАВИГАЦИЯ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center bg-purple-950/40 backdrop-blur-xl border-b border-purple-500/20">
-        <a href="/" className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-purple-600/80 to-fuchsia-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center bg-purple-950/90 backdrop-blur-xl border-b border-purple-500/30">
+        <a href="/" className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-purple-600 to-fuchsia-600 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-rotate-12 transition-transform"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Главная</span>
         </a>
-        <button className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-fuchsia-600/80 to-purple-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
+        <button className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-fuchsia-600 to-purple-600 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
           <span>Календарь</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         </button>
       </nav>
 
-      {/* ОСНОВНОЙ КОНТЕНТ С ПЕРЕХОДОМ */}
+      {/* ОСНОВНОЙ КОНТЕНТ */}
       <PageTransition direction="left">
-        <div className="relative z-10 pt-32 pb-16 px-4 md:px-8 w-full">
-          <div className="max-w-[2400px] mx-auto w-full">
+        <div className="relative z-10 pt-32 pb-16 px-8 w-full">
+          <div className="max-w-[1920px] mx-auto w-full">
             
-            <div className="mb-10 px-4">
+            <div className="mb-10">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Олимпиады школьников</h1>
               <p className="text-purple-200/70 text-xl max-w-3xl leading-relaxed">
                 Перечень 2026/27: профили и уровни выбранного сезона. Прошлые годы доступны в фильтре «Сезон».
               </p>
             </div>
 
-            {/* ПАНЕЛЬ ФИЛЬТРОВ - на всю ширину */}
-            <div className="p-8 md:p-10 rounded-[32px] bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl mb-10 w-full mx-4">
+            {/* ПАНЕЛЬ ФИЛЬТРОВ - НЕПРОЗРАЧНАЯ */}
+            <div className="p-8 md:p-10 rounded-[32px] bg-purple-950 border border-purple-500/40 mb-10 w-full shadow-2xl shadow-purple-900/50">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
                 <div className="lg:col-span-2">
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Название</label>
-                  <input type="text" placeholder="Например, Высшая проба" value={filters.name} onChange={(e) => setFilters({ ...filters, name: e.target.value })} className="w-full px-5 py-4 rounded-[20px] bg-purple-950/50 border border-purple-500/30 text-lg text-white placeholder-purple-300/40 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30 transition-all" />
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Название</label>
+                  <input type="text" placeholder="Например, Высшая проба" value={filters.name} onChange={(e) => setFilters({ ...filters, name: e.target.value })} className="w-full px-5 py-4 rounded-[20px] bg-purple-900 border border-purple-500/40 text-lg text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30 transition-all" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Предмет</label>
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Предмет</label>
                   <CustomSelect options={subjectsList} value={filters.subject} onChange={(v) => setFilters({ ...filters, subject: v })} placeholder="Выберите предмет" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Уровень</label>
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Уровень</label>
                   <CustomSelect options={levelsList} value={filters.level} onChange={(v) => setFilters({ ...filters, level: v })} placeholder="Выберите уровень" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Класс</label>
-                  <input type="text" value={filters.classRange} onChange={(e) => setFilters({ ...filters, classRange: e.target.value })} className="w-full px-5 py-4 rounded-[20px] bg-purple-950/50 border border-purple-500/30 text-lg text-white focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30 transition-all" />
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Класс</label>
+                  <CustomSelect options={classList} value={filters.classRange} onChange={(v) => setFilters({ ...filters, classRange: v })} placeholder="Выберите класс" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
                 <div>
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Сезон</label>
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Сезон</label>
                   <CustomSelect options={seasonsList} value={filters.season} onChange={(v) => setFilters({ ...filters, season: v })} placeholder="Выберите сезон" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Формат</label>
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Формат</label>
                   <CustomSelect options={formatsList} value={filters.format} onChange={(v) => setFilters({ ...filters, format: v })} placeholder="Выберите формат" />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-purple-300/80 uppercase tracking-wider mb-3">Сортировка</label>
+                  <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Сортировка</label>
                   <CustomSelect options={sortList} value={filters.sort} onChange={(v) => setFilters({ ...filters, sort: v })} placeholder="Выберите сортировку" />
                 </div>
                 <div className="lg:col-span-2 flex flex-wrap items-center gap-6 pt-2">
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" checked={filters.showOutsideList} onChange={(e) => setFilters({ ...filters, showOutsideList: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-950/50 accent-purple-500" />
+                    <input type="checkbox" checked={filters.showOutsideList} onChange={(e) => setFilters({ ...filters, showOutsideList: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-900 accent-purple-500" />
                     <span className="text-base text-purple-200 group-hover:text-white transition-colors">Вне перечня</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" checked={filters.registrationOpen} onChange={(e) => setFilters({ ...filters, registrationOpen: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-950/50 accent-purple-500" />
+                    <input type="checkbox" checked={filters.registrationOpen} onChange={(e) => setFilters({ ...filters, registrationOpen: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-900 accent-purple-500" />
                     <span className="text-base text-purple-200 group-hover:text-white transition-colors">Регистрация открыта</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" checked={filters.hasFutureEvents} onChange={(e) => setFilters({ ...filters, hasFutureEvents: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-950/50 accent-purple-500" />
+                    <input type="checkbox" checked={filters.hasFutureEvents} onChange={(e) => setFilters({ ...filters, hasFutureEvents: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-900 accent-purple-500" />
                     <span className="text-base text-purple-200 group-hover:text-white transition-colors">Будущие события</span>
                   </label>
                 </div>
               </div>
 
-              <div className="flex justify-end">
+              <div className="flex justify-end gap-4">
+                <button 
+                  onClick={resetFilters}
+                  className="px-8 py-4 rounded-[20px] bg-purple-800 border border-purple-500/40 text-white text-lg font-semibold hover:bg-purple-700 hover:border-purple-400 transition-all duration-300 flex items-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  Сбросить фильтры
+                </button>
                 <button className="px-10 py-4 rounded-[20px] bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white text-lg font-bold shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 hover:scale-105 transition-all duration-300">
                   Найти олимпиады
                 </button>
               </div>
             </div>
 
-            {/* ОЧЕНЬ ШИРОКИЕ КАРТОЧКИ - 2 КОЛОНКИ, ПРИЖАТЫ К КРАЯМ */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full px-4">
+            {/* КАРТОЧКИ - 4 КОЛОНКИ, НЕПРОЗРАЧНЫЕ */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
               {filteredOlympiads.map((o) => (
-                <div key={o.id} className="rounded-[28px] bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl overflow-hidden hover:border-purple-400/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 flex flex-col">
-                  <div className="p-8 flex-1">
-                    <div className="flex items-start gap-5 mb-5">
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-fuchsia-500/30 border border-purple-400/30 flex items-center justify-center flex-shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-300"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <div key={o.id} className="rounded-[28px] bg-purple-950 border border-purple-500/40 overflow-hidden hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-2 flex flex-col">
+                  <div className="p-6 flex-1">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-fuchsia-600 border border-purple-400/40 flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                       </div>
-                      <h3 className="text-2xl font-bold text-white leading-tight">{o.name}</h3>
+                      <h3 className="text-lg font-bold text-white leading-tight">{o.name}</h3>
                     </div>
 
-                    <div className="mb-5">
-                      <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-purple-800 text-purple-200 border border-purple-500/40">
                         {o.official ? "Официальный" : "Неофициальный"} · {o.season}
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap gap-3 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {o.subjects.map((s, idx) => (
-                        <div key={idx} className="flex items-center gap-2 bg-purple-950/40 px-4 py-2 rounded-xl border border-purple-500/20">
-                          <span className="text-base text-purple-200">{s.name}</span>
-                          <span className="px-3 py-1 rounded-lg text-sm font-bold bg-fuchsia-500/20 text-fuchsia-300 border border-dashed border-fuchsia-400/50">
+                        <div key={idx} className="flex items-center gap-2 bg-purple-900 px-3 py-1.5 rounded-xl border border-purple-500/30">
+                          <span className="text-sm text-purple-200">{s.name}</span>
+                          <span className="px-2 py-0.5 rounded-lg text-xs font-bold bg-fuchsia-600/30 text-fuchsia-200 border border-dashed border-fuchsia-400/50">
                             Уровень {s.level}
                           </span>
                         </div>
@@ -162,12 +183,12 @@ export default function OlympiadsPage() {
                     </div>
                   </div>
 
-                  <div className="border-t border-purple-500/20 p-6 bg-purple-950/40">
-                    <div className="text-sm text-purple-300/60 mb-1.5">Ближайшее действие</div>
-                    <div className="text-lg font-semibold text-white mb-1">{o.nextAction}</div>
-                    <div className="text-lg text-purple-300 font-medium">{o.nextDate}</div>
+                  <div className="border-t border-purple-500/30 p-5 bg-purple-900">
+                    <div className="text-xs text-purple-300/70 mb-1">Ближайшее действие</div>
+                    <div className="text-base font-semibold text-white mb-1">{o.nextAction}</div>
+                    <div className="text-base text-purple-200 font-medium">{o.nextDate}</div>
                     
-                    <div className="mt-4 pt-4 border-t border-purple-500/10 flex justify-between text-sm text-purple-300/50">
+                    <div className="mt-3 pt-3 border-t border-purple-500/20 flex justify-between text-sm text-purple-300/60">
                       <span>Данные о льготах</span>
                       <span className="text-purple-200">Проверено {o.verified}</span>
                     </div>
