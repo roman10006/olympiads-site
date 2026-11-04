@@ -131,9 +131,7 @@ export default function OlympiadsPage() {
                 </button>
               </div>
             </div>
-
-            {/* ОЧЕНЬ ШИРОКИЕ КАРТОЧКИ - 2 КОЛОНКИ, ПРИЖАТЫ К КРАЯМ */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full px-4">
               {filteredOlympiads.map((o) => (
                 <div key={o.id} className="rounded-[28px] bg-purple-900/20 border border-purple-500/20 backdrop-blur-xl overflow-hidden hover:border-purple-400/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-2 flex flex-col">
                   <div className="p-8 flex-1">
