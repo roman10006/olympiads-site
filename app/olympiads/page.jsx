@@ -8,7 +8,7 @@ import OlympCard from "../components/OlympCard";
 import Pagination from "../components/Pagination";
 import UnlistedSection from "../components/UnlistedSection";
 import Footer from "../components/Footer";
-import { olympiads } from "../data/olympiads";
+import { olympiads } from "../../data/olympiads";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -36,7 +36,6 @@ export default function OlympiadsPage() {
       return true;
     });
 
-    // Сортировка
     if (filters.sort === "По названию") {
       result.sort((a, b) => a.name.localeCompare(b.name, "ru"));
     } else if (filters.sort === "По уровню профиля") {
@@ -67,7 +66,6 @@ export default function OlympiadsPage() {
 
   return (
     <div className="animated-gradient min-h-screen w-full relative overflow-hidden">
-      {/* Фоновые элементы */}
       <div className="blob blob-1"></div><div className="blob blob-2"></div>
       <div className="blob blob-3"></div><div className="blob blob-4"></div>
       <div className="blob blob-5"></div><div className="blob blob-6"></div>
@@ -80,7 +78,6 @@ export default function OlympiadsPage() {
 
       <ParticleBackground />
 
-      {/* НАВИГАЦИЯ */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center bg-purple-950/40 backdrop-blur-xl border-b border-purple-500/20">
         <a href="/" className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-purple-600/80 to-fuchsia-600/80 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-rotate-12 transition-transform">
@@ -100,12 +97,10 @@ export default function OlympiadsPage() {
         </button>
       </nav>
 
-      {/* ОСНОВНОЙ КОНТЕНТ */}
       <PageTransition direction="left">
         <div className="relative z-10 pt-32 pb-16 px-4 md:px-8 w-full">
           <div className="max-w-[1920px] mx-auto w-full">
             
-            {/* Заголовок */}
             <div className="mb-10 px-4">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Олимпиады школьников</h1>
               <p className="text-purple-200/70 text-xl max-w-3xl leading-relaxed">
@@ -113,7 +108,6 @@ export default function OlympiadsPage() {
               </p>
             </div>
 
-            {/* Фильтры */}
             <FilterPanel
               filters={filters}
               setFilters={setFilters}
@@ -121,7 +115,6 @@ export default function OlympiadsPage() {
               totalFound={filteredOlympiads.length}
             />
 
-            {/* Карточки олимпиад */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full px-4">
               {paginatedOlympiads.map((o) => (
                 <OlympCard key={o.id} olympiad={o} />
@@ -136,17 +129,13 @@ export default function OlympiadsPage() {
               </div>
             )}
 
-            {/* Пагинация */}
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />
 
-            {/* Секция "Не в перечне" */}
             <UnlistedSection />
-
-            {/* Футер */}
             <Footer />
           </div>
         </div>
