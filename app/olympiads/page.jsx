@@ -89,8 +89,8 @@ export default function OlympiadsPage() {
               </p>
             </div>
 
-            {/* ПАНЕЛЬ ФИЛЬТРОВ - НЕПРОЗРАЧНАЯ */}
-            <div className="p-8 md:p-10 rounded-[32px] bg-purple-950 border border-purple-500/40 mb-10 w-full shadow-2xl shadow-purple-900/50">
+            {/* ПАНЕЛЬ ФИЛЬТРОВ - ПОЛНОСТЬЮ НЕПРОЗРАЧНАЯ */}
+            <div className="p-8 md:p-10 rounded-[32px] bg-purple-950 border border-purple-500/40 mb-10 w-full shadow-2xl">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
                 <div className="lg:col-span-2">
                   <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Название</label>
@@ -153,7 +153,7 @@ export default function OlympiadsPage() {
               </div>
             </div>
 
-            {/* КАРТОЧКИ - 4 КОЛОНКИ, НЕПРОЗРАЧНЫЕ */}
+            {/* КАРТОЧКИ - 4 КОЛОНКИ, ПОЛНОСТЬЮ НЕПРОЗРАЧНЫЕ */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
               {filteredOlympiads.map((o) => (
                 <div key={o.id} className="rounded-[28px] bg-purple-950 border border-purple-500/40 overflow-hidden hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-2 flex flex-col">
