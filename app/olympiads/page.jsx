@@ -65,13 +65,13 @@ export default function OlympiadsPage() {
 
       <ParticleBackground />
 
-      {/* НАВИГАЦИЯ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center bg-purple-950/90 backdrop-blur-xl border-b border-purple-500/30">
-        <a href="/" className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-purple-600 to-fuchsia-600 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
+      {/* НАВИГАЦИЯ - НЕПРОЗРАЧНАЯ */}
+      <nav style={{ backgroundColor: '#2e1065', border: 'none' }} className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-6 flex justify-between items-center">
+        <a href="/" className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-bold text-lg shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-rotate-12 transition-transform"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           <span>Главная</span>
         </a>
-        <button className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-fuchsia-600 to-purple-600 border border-purple-400/30 text-white font-bold text-lg shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 flex items-center gap-3">
+        <button className="group relative px-8 py-4 rounded-[20px] bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-bold text-lg shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-3">
           <span>Календарь</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
         </button>
@@ -90,11 +90,11 @@ export default function OlympiadsPage() {
             </div>
 
             {/* ПАНЕЛЬ ФИЛЬТРОВ - ПОЛНОСТЬЮ НЕПРОЗРАЧНАЯ */}
-            <div className="p-8 md:p-10 rounded-[32px] bg-purple-950 border border-purple-500/40 mb-10 w-full shadow-2xl">
+            <div style={{ backgroundColor: '#1e0a3d', border: '1px solid #7c3aed' }} className="p-8 md:p-10 rounded-[32px] mb-10 w-full shadow-2xl">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-6">
                 <div className="lg:col-span-2">
                   <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Название</label>
-                  <input type="text" placeholder="Например, Высшая проба" value={filters.name} onChange={(e) => setFilters({ ...filters, name: e.target.value })} className="w-full px-5 py-4 rounded-[20px] bg-purple-900 border border-purple-500/40 text-lg text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-500/30 transition-all" />
+                  <input type="text" placeholder="Например, Высшая проба" value={filters.name} onChange={(e) => setFilters({ ...filters, name: e.target.value })} style={{ backgroundColor: '#2e1065', border: '1px solid #7c3aed' }} className="w-full px-5 py-4 rounded-[20px] text-lg text-white placeholder-purple-400/50 focus:outline-none focus:border-purple-400 transition-all" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-purple-300 uppercase tracking-wider mb-3">Предмет</label>
@@ -125,15 +125,15 @@ export default function OlympiadsPage() {
                 </div>
                 <div className="lg:col-span-2 flex flex-wrap items-center gap-6 pt-2">
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" checked={filters.showOutsideList} onChange={(e) => setFilters({ ...filters, showOutsideList: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-900 accent-purple-500" />
+                    <input type="checkbox" checked={filters.showOutsideList} onChange={(e) => setFilters({ ...filters, showOutsideList: e.target.checked })} className="w-5 h-5 rounded-lg accent-purple-500" />
                     <span className="text-base text-purple-200 group-hover:text-white transition-colors">Вне перечня</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" checked={filters.registrationOpen} onChange={(e) => setFilters({ ...filters, registrationOpen: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-900 accent-purple-500" />
+                    <input type="checkbox" checked={filters.registrationOpen} onChange={(e) => setFilters({ ...filters, registrationOpen: e.target.checked })} className="w-5 h-5 rounded-lg accent-purple-500" />
                     <span className="text-base text-purple-200 group-hover:text-white transition-colors">Регистрация открыта</span>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" checked={filters.hasFutureEvents} onChange={(e) => setFilters({ ...filters, hasFutureEvents: e.target.checked })} className="w-5 h-5 rounded-lg border-purple-500/50 bg-purple-900 accent-purple-500" />
+                    <input type="checkbox" checked={filters.hasFutureEvents} onChange={(e) => setFilters({ ...filters, hasFutureEvents: e.target.checked })} className="w-5 h-5 rounded-lg accent-purple-500" />
                     <span className="text-base text-purple-200 group-hover:text-white transition-colors">Будущие события</span>
                   </label>
                 </div>
@@ -142,40 +142,41 @@ export default function OlympiadsPage() {
               <div className="flex justify-end gap-4">
                 <button 
                   onClick={resetFilters}
-                  className="px-8 py-4 rounded-[20px] bg-purple-800 border border-purple-500/40 text-white text-lg font-semibold hover:bg-purple-700 hover:border-purple-400 transition-all duration-300 flex items-center gap-2"
+                  style={{ backgroundColor: '#581c87', border: '1px solid #7c3aed' }}
+                  className="px-8 py-4 rounded-[20px] text-white text-lg font-semibold hover:bg-purple-700 transition-all duration-300 flex items-center gap-2"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
                   Сбросить фильтры
                 </button>
-                <button className="px-10 py-4 rounded-[20px] bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white text-lg font-bold shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 hover:scale-105 transition-all duration-300">
+                <button style={{ backgroundColor: '#9333ea' }} className="px-10 py-4 rounded-[20px] text-white text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300">
                   Найти олимпиады
                 </button>
               </div>
             </div>
 
-            {/* КАРТОЧКИ - 4 КОЛОНКИ, ПОЛНОСТЬЮ НЕПРОЗРАЧНЫЕ */}
+            {/* КАРТОЧКИ - ПОЛНОСТЬЮ НЕПРОЗРАЧНЫЕ */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
               {filteredOlympiads.map((o) => (
-                <div key={o.id} className="rounded-[28px] bg-purple-950 border border-purple-500/40 overflow-hidden hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:-translate-y-2 flex flex-col">
+                <div key={o.id} style={{ backgroundColor: '#1e0a3d', border: '1px solid #7c3aed' }} className="rounded-[28px] overflow-hidden hover:border-purple-400 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
                   <div className="p-6 flex-1">
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-fuchsia-600 border border-purple-400/40 flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/30">
+                      <div style={{ backgroundColor: '#7c3aed' }} className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                       </div>
                       <h3 className="text-lg font-bold text-white leading-tight">{o.name}</h3>
                     </div>
 
                     <div className="mb-4">
-                      <span className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold bg-purple-800 text-purple-200 border border-purple-500/40">
+                      <span style={{ backgroundColor: '#581c87', border: '1px solid #7c3aed' }} className="inline-block px-3 py-1.5 rounded-full text-sm font-semibold text-purple-200">
                         {o.official ? "Официальный" : "Неофициальный"} · {o.season}
                       </span>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {o.subjects.map((s, idx) => (
-                        <div key={idx} className="flex items-center gap-2 bg-purple-900 px-3 py-1.5 rounded-xl border border-purple-500/30">
+                        <div key={idx} style={{ backgroundColor: '#2e1065', border: '1px solid #7c3aed' }} className="flex items-center gap-2 px-3 py-1.5 rounded-xl">
                           <span className="text-sm text-purple-200">{s.name}</span>
-                          <span className="px-2 py-0.5 rounded-lg text-xs font-bold bg-fuchsia-600/30 text-fuchsia-200 border border-dashed border-fuchsia-400/50">
+                          <span style={{ backgroundColor: '#7e22ce', border: '1px dashed #c084fc' }} className="px-2 py-0.5 rounded-lg text-xs font-bold text-fuchsia-200">
                             Уровень {s.level}
                           </span>
                         </div>
@@ -183,12 +184,12 @@ export default function OlympiadsPage() {
                     </div>
                   </div>
 
-                  <div className="border-t border-purple-500/30 p-5 bg-purple-900">
-                    <div className="text-xs text-purple-300/70 mb-1">Ближайшее действие</div>
+                  <div style={{ backgroundColor: '#2e1065', borderTop: '1px solid #7c3aed' }} className="p-5">
+                    <div className="text-xs text-purple-300 mb-1">Ближайшее действие</div>
                     <div className="text-base font-semibold text-white mb-1">{o.nextAction}</div>
                     <div className="text-base text-purple-200 font-medium">{o.nextDate}</div>
                     
-                    <div className="mt-3 pt-3 border-t border-purple-500/20 flex justify-between text-sm text-purple-300/60">
+                    <div className="mt-3 pt-3 flex justify-between text-sm text-purple-300" style={{ borderTop: '1px solid #7c3aed' }}>
                       <span>Данные о льготах</span>
                       <span className="text-purple-200">Проверено {o.verified}</span>
                     </div>
